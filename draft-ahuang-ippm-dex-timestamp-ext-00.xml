@@ -98,9 +98,9 @@
     <date day="29" month="November" year="2022"/>
 
     <abstract>
-      <t>This document defines a new extension flag for In Situ Operations,
-      Administration, and Maintenance (IOAM) Direct Exporting. The new flag
-      allows IOAM DEX Option-type to add the timestamp into the header.</t>
+      <t>This document defines new extension flags for In Situ Operations,
+      Administration, and Maintenance (IOAM) Direct Exporting. The new flags
+      allow IOAM DEX Option-type to add the timestamp into the header.</t>
     </abstract>
 
     <note title="Requirements Language">
@@ -114,9 +114,28 @@
 
   <middle>
     <section anchor="introduction" title="Introduction">
-      <t>IOAM DEX Option-type <xref target="RFC9326"/> allows to aggregate metrics
-      in the different IOAM nodes and export.
+      <t>Network operators want to monitor the delay accros their network to understand
+      which nodes add the most delay to the path. In order to report this delay to a
+      collector, the nodes can use In Situ Operations, Administration and Maintenance
+      (IOAM) to mesure this metric.
       </t>
+
+      <t>With IOAM <xref target="RFC9197"/>, the path delay is measured by inserting 
+      the timestamp in the header. In passport mode, no aggregation in the node is 
+      possible. IOAM Direct Export Option-type <xref target="RFC9326"/> defines
+      a postcard mode allowing to aggregate the telemetry data in the local IOAM node.
+      This aggregated data can afterwards be monitored locally and exported to a
+      collector.
+      </t>
+      
+      <t>Unlike IOAM Pre-allocated and Incremental Trace Option-type, Direct Export
+      only encapsulates the inflight packet at the encapsulation node. Transit and 
+      decapsulation node only processes the DEX Option-type without modifying it.
+      </t>
+
+      <t>This document defines two new Extension flags for IOAM DEX Option-type 
+      <xref target="RFC9326"/> to be able to add a timestamp in the header.</t>
+
     </section>
 
     <section anchor="terminology" title="Terminology">
@@ -133,7 +152,17 @@
       </dl>
     </section>
 
-    <section anchor="Security" title="Security Considerations">
+    <section anchor="solution_overview" title="Solution overview">
+      <t>IOAM DEX Option-type format is defined in <xref target="RFC9326">Section 3.2</xref>.
+      </t>
+
+    </section>
+
+    <section anchor="export" title="Export method">
+      <t>TODO: add on-path telemetry IPFIX IE draft?</t>
+    </section>
+
+    <section anchor="security" title="Security Considerations">
       <t>The security considerations for the IOAM DEX Option-type
       are described in <xref target="RFC9326"/>. This documents adds
       no additional security considerations.</t>
@@ -141,10 +170,9 @@
 
     <section anchor="IANA_Considerations" title="IANA Considerations">
       <t>TODO: this URI already exists, how should this be managed?</t>
-      <!-- <t>This document describes the URI from IETF XML Registry and the
-      registration of a new YANG module name.</t>
-      
-      <section title="URI">
+      <t>This document requests two new Extension-Flags.</t>
+
+      <!-- <section title="URI">
       <t>TODO: this URI already exists, how should this be managed?</t>
       <t>IANA is requested to assign a new URI from the <xref
       target="RFC3688">IETF XML Registry</xref>. The following URI is
@@ -174,7 +202,7 @@ reference: RFC XXXX]]></artwork>
       </section> -->
     </section>
 
-    <section anchor="Acknowledgements" title="Acknowledgements">
+    <section anchor="acknowledgements" title="Acknowledgements">
       <t>The authors would like to thank xxx for their review and valuable
       comments.</t>
     </section>

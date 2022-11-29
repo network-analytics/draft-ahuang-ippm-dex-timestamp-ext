@@ -18,9 +18,9 @@ Expires: 2 June 2023                                              Huawei
 
 Abstract
 
-   This document defines a new extension flag for In Situ Operations,
+   This document defines new extension flags for In Situ Operations,
    Administration, and Maintenance (IOAM) Direct Exporting.  The new
-   flag allows IOAM DEX Option-type to add the timestamp into the
+   flags allow IOAM DEX Option-type to add the timestamp into the
    header.
 
 Requirements Language
@@ -75,36 +75,36 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
-   2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   2
-   3.  Security Considerations . . . . . . . . . . . . . . . . . . .   2
-   4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   3
-   5.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   3
-   6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   3
-     6.1.  Normative References  . . . . . . . . . . . . . . . . . .   3
-     6.2.  Informative References  . . . . . . . . . . . . . . . . .   3
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   3
+   2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   3
+   3.  Solution overview . . . . . . . . . . . . . . . . . . . . . .   3
+   4.  Export method . . . . . . . . . . . . . . . . . . . . . . . .   3
+   5.  Security Considerations . . . . . . . . . . . . . . . . . . .   3
+   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   3
+   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   3
+   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   3
+     8.1.  Normative References  . . . . . . . . . . . . . . . . . .   3
+     8.2.  Informative References  . . . . . . . . . . . . . . . . .   4
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   4
 
 1.  Introduction
 
-   IOAM DEX Option-type [RFC9326] allows to aggregate metrics in the
-   different IOAM nodes and export.
+   Network operators want to monitor the delay accros their network to
+   understand which nodes add the most delay to the path.  In order to
+   report this delay to a collector, the nodes can use In Situ
+   Operations, Administration and Maintenance (IOAM) to mesure this
+   metric.
 
-2.  Terminology
+   With IOAM [RFC9197], the path delay is measured by inserting the
+   timestamp in the header.  In passport mode, no aggregation in the
+   node is possible.  IOAM Direct Export Option-type [RFC9326] defines a
+   postcard mode allowing to aggregate the telemetry data in the local
+   IOAM node.  This aggregated data can afterwards be monitored locally
+   and exported to a collector.
 
-   Abbreviations used in this document:
-
-   IOAM:  In Situ Operations, Administration, and Maintenance [RFC9197]
-
-   DEX:  Direct Exporting [RFC9326]
-
-3.  Security Considerations
-
-   The security considerations for the IOAM DEX Option-type are
-   described in [RFC9326].  This documents adds no additional security
-   considerations.
-
-
-
+   Unlike IOAM Pre-allocated and Incremental Trace Option-type, Direct
+   Export only encapsulates the inflight packet at the encapsulation
+   node.  Transit and decapsulation node only processes the DEX Option-
+   type without modifying it.
 
 
 
@@ -114,18 +114,45 @@ Graf, et al.               Expires 2 June 2023                  [Page 2]
 Internet-Draft        Timestamp extension IOAM DEX         November 2022
 
 
-4.  IANA Considerations
+   This document defines two new Extension flags for IOAM DEX Option-
+   type [RFC9326] to be able to add a timestamp in the header.
+
+2.  Terminology
+
+   Abbreviations used in this document:
+
+   IOAM:  In Situ Operations, Administration, and Maintenance [RFC9197]
+
+   DEX:  Direct Exporting [RFC9326]
+
+3.  Solution overview
+
+   IOAM DEX Option-type format is defined in Section 3.2 [RFC9326].
+
+4.  Export method
+
+   TODO: add on-path telemetry IPFIX IE draft?
+
+5.  Security Considerations
+
+   The security considerations for the IOAM DEX Option-type are
+   described in [RFC9326].  This documents adds no additional security
+   considerations.
+
+6.  IANA Considerations
 
    TODO: this URI already exists, how should this be managed?
 
-5.  Acknowledgements
+   This document requests two new Extension-Flags.
+
+7.  Acknowledgements
 
    The authors would like to thank xxx for their review and valuable
    comments.
 
-6.  References
+8.  References
 
-6.1.  Normative References
+8.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -135,6 +162,13 @@ Internet-Draft        Timestamp extension IOAM DEX         November 2022
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
+
+
+
+Graf, et al.               Expires 2 June 2023                  [Page 3]
+
+Internet-Draft        Timestamp extension IOAM DEX         November 2022
+
 
    [RFC9197]  Brockners, F., Ed., Bhandari, S., Ed., and T. Mizrahi,
               Ed., "Data Fields for In Situ Operations, Administration,
@@ -147,7 +181,7 @@ Internet-Draft        Timestamp extension IOAM DEX         November 2022
               DOI 10.17487/RFC9326, November 2022,
               <https://www.rfc-editor.org/info/rfc9326>.
 
-6.2.  Informative References
+8.2.  Informative References
 
 Authors' Addresses
 
@@ -158,16 +192,6 @@ Authors' Addresses
    Switzerland
 
    Email: thomas.graf@swisscom.com
-
-
-
-
-
-
-
-Graf, et al.               Expires 2 June 2023                  [Page 3]
-
-Internet-Draft        Timestamp extension IOAM DEX         November 2022
 
 
    Benoit Claise
@@ -190,30 +214,6 @@ Internet-Draft        Timestamp extension IOAM DEX         November 2022
    France
 
    Email: pierre.francois@insa-lyon.fr
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
