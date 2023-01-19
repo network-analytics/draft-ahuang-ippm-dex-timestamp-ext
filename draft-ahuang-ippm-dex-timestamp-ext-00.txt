@@ -120,10 +120,14 @@ Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
 3.  Solution overview
 
-   IOAM DEX Option-type format is defined in Section 3.2 [RFC9326].  To
-   be able to mesure the delay between the encapsulation node and the
-   current node, a timestamp needs to be added to the IOAM DEX option-
-   type.
+   The IOAM DEX Option-type format is defined in Section 3.2 [RFC9326].
+   To be able to mesure the delay between the encapsulation node and the
+   current node, we suggest to add a timestamp to the IOAM DEX option-
+   type as illustrated in figure Figure 1
+
+   This document proposes two optional fields to be included in the IOAM
+   DEX option type format that can be enabled using IOAM DEX Extension-
+   Flags (Using currently unassigned flags 2 and 3).
 
      0                   1                   2                   3
      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -141,12 +145,12 @@ Internet-Draft        Timestamp extension IOAM DEX          January 2023
      |                  Timestamp Fraction  (Optional)               |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-                 Figure 1: UDP-Notif Message Header Format
-
-   This document proposes 2 new optional fields that can be enabled by
-   the Extension-Flags.
+         Figure 1: IOAM DEX option type Format including timestamp
 
 4.  Timestamp formats
+
+   We refer to use the format of TODO REF to encode the Timestamp
+   Seconds and Timestamp Fraction fields
 
 5.  Export method
 
@@ -161,10 +165,6 @@ Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
 
 
-
-
-
-
 Graf, et al.              Expires 23 July 2023                  [Page 3]
 
 Internet-Draft        Timestamp extension IOAM DEX          January 2023
@@ -172,9 +172,8 @@ Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
 7.  IANA Considerations
 
-   TODO: this URI already exists, how should this be managed?
-
-   This document requests two new Extension-Flags.
+   IANA would be required to reserve flags 2 and 3 from the IOAM DEX
+   Extension Flags registry.
 
 8.  Acknowledgements
 
@@ -216,6 +215,7 @@ Authors' Addresses
    Switzerland
 
    Email: thomas.graf@swisscom.com
+
 
 
 
