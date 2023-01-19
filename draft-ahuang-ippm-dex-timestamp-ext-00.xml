@@ -114,25 +114,14 @@
 
   <middle>
     <section anchor="introduction" title="Introduction">
-      <t>Network operators want to monitor the delay accros their network to understand
-      which nodes add the most delay to the path. In order to report this delay to a
-      collector, the nodes can use In Situ Operations, Administration and Maintenance
-      (IOAM) to mesure this metric.
-      </t>
+      <t>Network operators require delay monitoring accros their network, notably when some services
+           undergo long end-to-end delays. Nodes can use IOAM <xref target="RFC9197"/> in order to report this delay to a
+      collector.</t>
 
-      <t>With IOAM <xref target="RFC9197"/>, the path delay is measured by inserting 
-      the timestamp in the header. In passport mode, no aggregation in the node is 
-      possible. IOAM Direct Export Option-type <xref target="RFC9326"/> defines
-      a postcard mode allowing to aggregate the telemetry data in the local IOAM node.
-      This aggregated data can afterwards be monitored locally and exported to a
-      collector.
-      </t>
+      <t>In order to support delay monitoring in passport mode so as to leverage aggregation; 
+           IOAM Direct Export Option-type <xref target="RFC9326"/> needs to be extended to 
+           accomodate delay monitoring. </t>
       
-      <t>Unlike IOAM Pre-allocated and Incremental Trace Option-type, Direct Export
-      only encapsulates the inflight packet at the encapsulation node. Transit and 
-      decapsulation node only processes the DEX Option-type without modifying it.
-      </t>
-
       <t>This document defines two new Extension flags for IOAM DEX Option-type 
       <xref target="RFC9326"/> to be able to add a timestamp in the header.</t>
 
