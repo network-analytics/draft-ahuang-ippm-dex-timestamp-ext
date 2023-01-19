@@ -141,7 +141,7 @@
       (Using currently unassigned Extension-Flags 2 and 3).</t>
 
       <figure anchor="fig_dex_header"
-        title="IOAM DEX option type Formatincluding timestamp">
+        title="IOAM DEX Option-Type Format including the timestamps">
         <artwork align="center"><![CDATA[
 0                   1                   2                   3
 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1

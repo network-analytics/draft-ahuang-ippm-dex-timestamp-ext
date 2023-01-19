@@ -134,7 +134,7 @@ Internet-Draft        Timestamp extension IOAM DEX          January 2023
      |                  Timestamp Fraction  (Optional)               |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-          Figure 1: IOAM DEX option type Formatincluding timestamp
+       Figure 1: IOAM DEX Option-Type Format including the timestamps
 
 3.  Timestamp formats
 
