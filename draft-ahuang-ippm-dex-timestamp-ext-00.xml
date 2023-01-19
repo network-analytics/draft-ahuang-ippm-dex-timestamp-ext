@@ -95,7 +95,7 @@
       </address>
     </author>
 
-    <date day="29" month="November" year="2022"/>
+    <date day="19" month="January" year="2023"/>
 
     <abstract>
       <t>This document defines new extension flags for the In Situ Operations,
@@ -143,9 +143,37 @@
     </section>
 
     <section anchor="solution_overview" title="Solution overview">
-      <t>IOAM DEX Option-type format is defined in <xref target="RFC9326">Section 3.2</xref>.           
+      <t>IOAM DEX Option-type format is defined in <xref target="RFC9326">Section 3.2</xref>.
+      To be able to mesure the delay between the encapsulation node and the current node,
+      a timestamp needs to be added to the IOAM DEX option-type.
       </t>
 
+      <figure anchor="fig_ups_header" title="UDP-Notif Message Header Format">
+        <artwork align="center"><![CDATA[
+0                   1                   2                   3
+0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|        Namespace-ID           |     Flags     |Extension-Flags|
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|               IOAM-Trace-Type                 |   Reserved    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                         Flow ID (Optional)                    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                     Sequence Number  (Optional)               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                   Timestamp Seconds  (Optional)               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                  Timestamp Fraction  (Optional)               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+]]></artwork>
+      </figure>
+
+      <t>This document proposes 2 new optional fields that can be enabled 
+      by the Extension-Flags.</t>
+    </section>
+
+    <section anchor="timestamp_format" title="Timestamp formats">
+    
     </section>
 
     <section anchor="export" title="Export method">

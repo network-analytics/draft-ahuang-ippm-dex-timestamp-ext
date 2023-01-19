@@ -5,11 +5,11 @@
 Network Working Group                                            T. Graf
 Internet-Draft                                                  Swisscom
 Intended status: Standards Track                               B. Claise
-Expires: 2 June 2023                                              Huawei
+Expires: 23 July 2023                                             Huawei
                                                            A. Huang Feng
                                                              P. Francois
                                                                INSA-Lyon
-                                                        29 November 2022
+                                                         19 January 2023
 
 
   Timestamp extension flag for In Situ Operations, Administration, and
@@ -18,9 +18,9 @@ Expires: 2 June 2023                                              Huawei
 
 Abstract
 
-   This document defines new extension flags for In Situ Operations,
-   Administration, and Maintenance (IOAM) Direct Exporting.  The new
-   flags allow IOAM DEX Option-type to add the timestamp into the
+   This document defines new extension flags for the In Situ Operations,
+   Administration, and Maintenance (IOAM) Direct Export option type.
+   The new flags allow IOAM DEX Option-type to add a timestamp into the
    header.
 
 Requirements Language
@@ -46,21 +46,21 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 June 2023.
+   This Internet-Draft will expire on 23 July 2023.
 
 
 
 
 
 
-Graf, et al.               Expires 2 June 2023                  [Page 1]
+Graf, et al.              Expires 23 July 2023                  [Page 1]
 
-Internet-Draft        Timestamp extension IOAM DEX         November 2022
+Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
 
 Copyright Notice
 
-   Copyright (c) 2022 IETF Trust and the persons identified as the
+   Copyright (c) 2023 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -75,51 +75,44 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
-   2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   3
+   2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   2
    3.  Solution overview . . . . . . . . . . . . . . . . . . . . . .   3
-   4.  Export method . . . . . . . . . . . . . . . . . . . . . . . .   3
-   5.  Security Considerations . . . . . . . . . . . . . . . . . . .   3
-   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   3
-   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   3
-   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   3
-     8.1.  Normative References  . . . . . . . . . . . . . . . . . .   3
-     8.2.  Informative References  . . . . . . . . . . . . . . . . .   4
+   4.  Timestamp formats . . . . . . . . . . . . . . . . . . . . . .   3
+   5.  Export method . . . . . . . . . . . . . . . . . . . . . . . .   3
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .   3
+   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   4
+   8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   4
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .   4
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .   4
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   4
 
 1.  Introduction
 
-   Network operators want to monitor the delay accros their network to
-   understand which nodes add the most delay to the path.  In order to
-   report this delay to a collector, the nodes can use In Situ
-   Operations, Administration and Maintenance (IOAM) to mesure this
-   metric.
+   Network operators require delay monitoring accros their network,
+   notably when some services undergo long end-to-end delays.  Nodes can
+   use IOAM [RFC9197] in order to report this delay to a collector.
 
-   With IOAM [RFC9197], the path delay is measured by inserting the
-   timestamp in the header.  In passport mode, no aggregation in the
-   node is possible.  IOAM Direct Export Option-type [RFC9326] defines a
-   postcard mode allowing to aggregate the telemetry data in the local
-   IOAM node.  This aggregated data can afterwards be monitored locally
-   and exported to a collector.
-
-   Unlike IOAM Pre-allocated and Incremental Trace Option-type, Direct
-   Export only encapsulates the inflight packet at the encapsulation
-   node.  Transit and decapsulation node only processes the DEX Option-
-   type without modifying it.
-
-
-
-
-Graf, et al.               Expires 2 June 2023                  [Page 2]
-
-Internet-Draft        Timestamp extension IOAM DEX         November 2022
-
+   In order to support delay monitoring in passport mode so as to
+   leverage aggregation; IOAM Direct Export Option-type (DEX) [RFC9326]
+   needs to be extended to accomodate delay monitoring.
 
    This document defines two new Extension flags for IOAM DEX Option-
    type [RFC9326] to be able to add a timestamp in the header.
 
 2.  Terminology
 
+   This section should be removed
+
    Abbreviations used in this document:
+
+
+
+
+Graf, et al.              Expires 23 July 2023                  [Page 2]
+
+Internet-Draft        Timestamp extension IOAM DEX          January 2023
+
 
    IOAM:  In Situ Operations, Administration, and Maintenance [RFC9197]
 
@@ -127,32 +120,70 @@ Internet-Draft        Timestamp extension IOAM DEX         November 2022
 
 3.  Solution overview
 
-   IOAM DEX Option-type format is defined in Section 3.2 [RFC9326].
+   IOAM DEX Option-type format is defined in Section 3.2 [RFC9326].  To
+   be able to mesure the delay between the encapsulation node and the
+   current node, a timestamp needs to be added to the IOAM DEX option-
+   type.
 
-4.  Export method
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |        Namespace-ID           |     Flags     |Extension-Flags|
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |               IOAM-Trace-Type                 |   Reserved    |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |                         Flow ID (Optional)                    |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |                     Sequence Number  (Optional)               |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |                   Timestamp Seconds  (Optional)               |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |                  Timestamp Fraction  (Optional)               |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   TODO: add on-path telemetry IPFIX IE draft?
+                 Figure 1: UDP-Notif Message Header Format
 
-5.  Security Considerations
+   This document proposes 2 new optional fields that can be enabled by
+   the Extension-Flags.
+
+4.  Timestamp formats
+
+5.  Export method
+
+   A way to perform data export of monitored delay using the method
+   described in this document is proposed in TODO IPFIX IE draft.
+
+6.  Security Considerations
 
    The security considerations for the IOAM DEX Option-type are
    described in [RFC9326].  This documents adds no additional security
    considerations.
 
-6.  IANA Considerations
+
+
+
+
+
+
+Graf, et al.              Expires 23 July 2023                  [Page 3]
+
+Internet-Draft        Timestamp extension IOAM DEX          January 2023
+
+
+7.  IANA Considerations
 
    TODO: this URI already exists, how should this be managed?
 
    This document requests two new Extension-Flags.
 
-7.  Acknowledgements
+8.  Acknowledgements
 
    The authors would like to thank xxx for their review and valuable
    comments.
 
-8.  References
+9.  References
 
-8.1.  Normative References
+9.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -162,13 +193,6 @@ Internet-Draft        Timestamp extension IOAM DEX         November 2022
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
-
-
-
-Graf, et al.               Expires 2 June 2023                  [Page 3]
-
-Internet-Draft        Timestamp extension IOAM DEX         November 2022
-
 
    [RFC9197]  Brockners, F., Ed., Bhandari, S., Ed., and T. Mizrahi,
               Ed., "Data Fields for In Situ Operations, Administration,
@@ -181,7 +205,7 @@ Internet-Draft        Timestamp extension IOAM DEX         November 2022
               DOI 10.17487/RFC9326, November 2022,
               <https://www.rfc-editor.org/info/rfc9326>.
 
-8.2.  Informative References
+9.2.  Informative References
 
 Authors' Addresses
 
@@ -192,6 +216,14 @@ Authors' Addresses
    Switzerland
 
    Email: thomas.graf@swisscom.com
+
+
+
+
+
+Graf, et al.              Expires 23 July 2023                  [Page 4]
+
+Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
 
    Benoit Claise
@@ -221,4 +253,28 @@ Authors' Addresses
 
 
 
-Graf, et al.               Expires 2 June 2023                  [Page 4]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Graf, et al.              Expires 23 July 2023                  [Page 5]
