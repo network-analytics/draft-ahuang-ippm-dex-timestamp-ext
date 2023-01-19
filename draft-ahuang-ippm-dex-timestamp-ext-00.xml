@@ -143,12 +143,17 @@
     </section>
 
     <section anchor="solution_overview" title="Solution overview">
-      <t>IOAM DEX Option-type format is defined in <xref target="RFC9326">Section 3.2</xref>.
+      <t>The IOAM DEX Option-type format is defined in <xref target="RFC9326">Section 3.2</xref>.
       To be able to mesure the delay between the encapsulation node and the current node,
-      a timestamp needs to be added to the IOAM DEX option-type.
+      we suggest to add a timestamp to the IOAM DEX option-type as illustrated in 
+           figure <xref target="fig_ups_header"/>
       </t>
+         
+         
+      <t>This document proposes two optional fields to be included in the IOAM DEX option type format that can be enabled 
+      using IOAM DEX Extension-Flags (Using currently unassigned flags 2 and 3).</t>
 
-      <figure anchor="fig_ups_header" title="UDP-Notif Message Header Format">
+      <figure anchor="fig_ups_header" title="IOAM DEX option type Format including timestamp">
         <artwork align="center"><![CDATA[
 0                   1                   2                   3
 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -168,12 +173,10 @@
 ]]></artwork>
       </figure>
 
-      <t>This document proposes 2 new optional fields that can be enabled 
-      by the Extension-Flags.</t>
     </section>
 
     <section anchor="timestamp_format" title="Timestamp formats">
-    
+         <t>We refer to use the format of TODO REF to encode the Timestamp Seconds and Timestamp Fraction fields</t>
     </section>
 
     <section anchor="export" title="Export method">
@@ -188,37 +191,7 @@
     </section>
 
     <section anchor="IANA_Considerations" title="IANA Considerations">
-      <t>TODO: this URI already exists, how should this be managed?</t>
-      <t>This document requests two new Extension-Flags.</t>
-
-      <!-- <section title="URI">
-      <t>TODO: this URI already exists, how should this be managed?</t>
-      <t>IANA is requested to assign a new URI from the <xref
-      target="RFC3688">IETF XML Registry</xref>. The following URI is
-      suggested:</t>
-
-      <t><figure>
-          <artwork align="left"><![CDATA[
-URI: urn:ietf:params:xml:ns:netconf:notification:1.0
-Registrant Contact: The IESG.
-XML: N/A; the requested URI is an XML namespace.]]></artwork>
-        </figure></t>
-      </section>
-
-      <section title="YANG module name">
-
-        <t>This document also requests a new YANG module name in the <xref
-        target="RFC7950">YANG Module Names registry</xref> with the following
-        suggestion:</t>
-
-        <t><figure>
-            <artwork align="left"><![CDATA[
-name: ietf-udp-notif
-namespace: urn:ietf:params:xml:ns:netconf:notification:1.0
-prefix: inn
-reference: RFC XXXX]]></artwork>
-        </figure></t>
-      </section> -->
+         <t>IANA would be required to reserve flags 2 and 3 from the IOAM DEX Extension Flags registry.</t>
     </section>
 
     <section anchor="acknowledgements" title="Acknowledgements">
