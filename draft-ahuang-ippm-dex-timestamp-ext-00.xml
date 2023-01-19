@@ -17,32 +17,6 @@
     <title abbrev="Timestamp extension IOAM DEX">Timestamp extension flag
     for In Situ Operations, Administration, and Maintenance (IOAM) Direct Export</title>
 
-    <author fullname="Thomas Graf" initials="T" surname="Graf">
-      <organization>Swisscom</organization>
-
-      <address>
-        <postal>
-          <street>Binzring 17</street>
-
-          <city>Zurich</city>
-
-          <code>8045</code>
-
-          <country>Switzerland</country>
-        </postal>
-
-        <email>thomas.graf@swisscom.com</email>
-      </address>
-    </author>
-
-    <author fullname="Benoit Claise" initials="B" surname="Claise">
-      <organization>Huawei</organization>
-
-      <address>
-        <email>benoit.claise@huawei.com</email>
-      </address>
-    </author>
-
     <author fullname="Alex Huang Feng" initials="A." surname="Huang Feng">
       <organization>INSA-Lyon</organization>
 
@@ -94,6 +68,32 @@
         <uri/>
       </address>
     </author>
+    <author fullname="Thomas Graf" initials="T" surname="Graf">
+      <organization>Swisscom</organization>
+
+      <address>
+        <postal>
+          <street>Binzring 17</street>
+
+          <city>Zurich</city>
+
+          <code>8045</code>
+
+          <country>Switzerland</country>
+        </postal>
+
+        <email>thomas.graf@swisscom.com</email>
+      </address>
+    </author>
+
+    <author fullname="Benoit Claise" initials="B" surname="Claise">
+      <organization>Huawei</organization>
+
+      <address>
+        <email>benoit.claise@huawei.com</email>
+      </address>
+    </author>
+
 
     <date day="19" month="January" year="2023"/>
 

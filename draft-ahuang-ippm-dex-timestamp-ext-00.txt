@@ -2,13 +2,13 @@
 
 
 
-Network Working Group                                            T. Graf
-Internet-Draft                                                  Swisscom
-Intended status: Standards Track                               B. Claise
-Expires: 23 July 2023                                             Huawei
-                                                           A. Huang Feng
-                                                             P. Francois
-                                                               INSA-Lyon
+Network Working Group                                      A. Huang Feng
+Internet-Draft                                               P. Francois
+Intended status: Standards Track                               INSA-Lyon
+Expires: 23 July 2023                                            T. Graf
+                                                                Swisscom
+                                                               B. Claise
+                                                                  Huawei
                                                          19 January 2023
 
 
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Graf, et al.              Expires 23 July 2023                  [Page 1]
+Huang Feng, et al.        Expires 23 July 2023                  [Page 1]
 
 Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Graf, et al.              Expires 23 July 2023                  [Page 2]
+Huang Feng, et al.        Expires 23 July 2023                  [Page 2]
 
 Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
@@ -165,7 +165,7 @@ Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
 
 
-Graf, et al.              Expires 23 July 2023                  [Page 3]
+Huang Feng, et al.        Expires 23 July 2023                  [Page 3]
 
 Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
@@ -208,36 +208,22 @@ Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
 Authors' Addresses
 
-   Thomas Graf
-   Swisscom
-   Binzring 17
-   CH-8045 Zurich
-   Switzerland
-
-   Email: thomas.graf@swisscom.com
-
-
-
-
-
-
-Graf, et al.              Expires 23 July 2023                  [Page 4]
-
-Internet-Draft        Timestamp extension IOAM DEX          January 2023
-
-
-   Benoit Claise
-   Huawei
-
-   Email: benoit.claise@huawei.com
-
-
    Alex Huang Feng
    INSA-Lyon
    Lyon
    France
 
    Email: alex.huang-feng@insa-lyon.fr
+
+
+
+
+
+
+
+Huang Feng, et al.        Expires 23 July 2023                  [Page 4]
+
+Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
 
    Pierre Francois
@@ -248,6 +234,19 @@ Internet-Draft        Timestamp extension IOAM DEX          January 2023
    Email: pierre.francois@insa-lyon.fr
 
 
+   Thomas Graf
+   Swisscom
+   Binzring 17
+   CH-8045 Zurich
+   Switzerland
+
+   Email: thomas.graf@swisscom.com
+
+
+   Benoit Claise
+   Huawei
+
+   Email: benoit.claise@huawei.com
 
 
 
@@ -277,4 +276,5 @@ Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
 
 
-Graf, et al.              Expires 23 July 2023                  [Page 5]
+
+Huang Feng, et al.        Expires 23 July 2023                  [Page 5]
