@@ -119,7 +119,7 @@
       collector.</t>
 
       <t>In order to support delay monitoring in passport mode so as to leverage aggregation; 
-           IOAM Direct Export Option-type <xref target="RFC9326"/> needs to be extended to 
+           IOAM Direct Export Option-type (DEX) <xref target="RFC9326"/> needs to be extended to 
            accomodate delay monitoring. </t>
       
       <t>This document defines two new Extension flags for IOAM DEX Option-type 
@@ -128,6 +128,7 @@
     </section>
 
     <section anchor="terminology" title="Terminology">
+         <t>This section should be removed</t>
       <t>Abbreviations used in this document:</t>
 
       <dl>
@@ -142,13 +143,14 @@
     </section>
 
     <section anchor="solution_overview" title="Solution overview">
-      <t>IOAM DEX Option-type format is defined in <xref target="RFC9326">Section 3.2</xref>.
+      <t>IOAM DEX Option-type format is defined in <xref target="RFC9326">Section 3.2</xref>.           
       </t>
 
     </section>
 
     <section anchor="export" title="Export method">
-      <t>TODO: add on-path telemetry IPFIX IE draft?</t>
+      <t>A way to perform data export of monitored delay using the method described in this document
+           is proposed in TODO IPFIX IE draft.</t>
     </section>
 
     <section anchor="security" title="Security Considerations">
