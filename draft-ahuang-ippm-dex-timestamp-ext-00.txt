@@ -5,10 +5,10 @@
 Network Working Group                                      A. Huang Feng
 Internet-Draft                                               P. Francois
 Intended status: Standards Track                               INSA-Lyon
-Expires: 23 July 2023                                            T. Graf
-                                                                Swisscom
-                                                               B. Claise
+Expires: 23 July 2023                                          B. Claise
                                                                   Huawei
+                                                                 T. Graf
+                                                                Swisscom
                                                          19 January 2023
 
 
@@ -75,16 +75,15 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
-   2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   2
-   3.  Solution overview . . . . . . . . . . . . . . . . . . . . . .   3
-   4.  Timestamp formats . . . . . . . . . . . . . . . . . . . . . .   3
-   5.  Export method . . . . . . . . . . . . . . . . . . . . . . . .   3
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .   3
-   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   4
-   8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   4
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .   4
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .   4
+   2.  Solution overview . . . . . . . . . . . . . . . . . . . . . .   2
+   3.  Timestamp formats . . . . . . . . . . . . . . . . . . . . . .   3
+   4.  Export method . . . . . . . . . . . . . . . . . . . . . . . .   3
+   5.  Security Considerations . . . . . . . . . . . . . . . . . . .   3
+   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   3
+   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   4
+   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     8.1.  Normative References  . . . . . . . . . . . . . . . . . .   4
+     8.2.  Informative References  . . . . . . . . . . . . . . . . .   4
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   4
 
 1.  Introduction
@@ -93,18 +92,19 @@ Table of Contents
    notably when some services undergo long end-to-end delays.  Nodes can
    use IOAM [RFC9197] in order to report this delay to a collector.
 
-   In order to support delay monitoring in passport mode so as to
+   In order to support delay monitoring in postcard mode so as to
    leverage aggregation; IOAM Direct Export Option-type (DEX) [RFC9326]
    needs to be extended to accomodate delay monitoring.
 
    This document defines two new Extension flags for IOAM DEX Option-
    type [RFC9326] to be able to add a timestamp in the header.
 
-2.  Terminology
+2.  Solution overview
 
-   This section should be removed
-
-   Abbreviations used in this document:
+   The IOAM DEX Option-type format is defined in Section 3.2 [RFC9326].
+   To be able to mesure the delay between the encapsulation node and the
+   current node, we suggest to add a timestamp to the IOAM DEX option-
+   type as illustrated in Figure 1.
 
 
 
@@ -114,20 +114,9 @@ Huang Feng, et al.        Expires 23 July 2023                  [Page 2]
 Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
 
-   IOAM:  In Situ Operations, Administration, and Maintenance [RFC9197]
-
-   DEX:  Direct Exporting [RFC9326]
-
-3.  Solution overview
-
-   The IOAM DEX Option-type format is defined in Section 3.2 [RFC9326].
-   To be able to mesure the delay between the encapsulation node and the
-   current node, we suggest to add a timestamp to the IOAM DEX option-
-   type as illustrated in figure Figure 1
-
    This document proposes two optional fields to be included in the IOAM
    DEX option type format that can be enabled using IOAM DEX Extension-
-   Flags (Using currently unassigned flags 2 and 3).
+   Flags (Using currently unassigned Extension-Flags 2 and 3).
 
      0                   1                   2                   3
      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -145,23 +134,34 @@ Internet-Draft        Timestamp extension IOAM DEX          January 2023
      |                  Timestamp Fraction  (Optional)               |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-         Figure 1: IOAM DEX option type Format including timestamp
+          Figure 1: IOAM DEX option type Formatincluding timestamp
 
-4.  Timestamp formats
+3.  Timestamp formats
 
-   We refer to use the format of TODO REF to encode the Timestamp
-   Seconds and Timestamp Fraction fields
+   We refer to use the format of Section 5 [RFC9197] to encode the
+   Timestamp Seconds and Timestamp Fraction fields.
 
-5.  Export method
+4.  Export method
+
+   The mechanism and associated formats for exporting the delay metrics
+   are outside the scope of this document.
 
    A way to perform data export of monitored delay using the method
-   described in this document is proposed in TODO IPFIX IE draft.
+   described in this document is proposed in
+   [I-D.tgraf-opsawg-ipfix-on-path-telemetry].
 
-6.  Security Considerations
+5.  Security Considerations
 
    The security considerations for the IOAM DEX Option-type are
    described in [RFC9326].  This documents adds no additional security
    considerations.
+
+6.  IANA Considerations
+
+   IANA would be required to reserve two bits in the "IOAM DEX
+   Extension-Flags" registry.
+
+   These are the proposed bits for the timestamp extensions:
 
 
 
@@ -170,19 +170,22 @@ Huang Feng, et al.        Expires 23 July 2023                  [Page 3]
 Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
 
-7.  IANA Considerations
+     Bit: 2
+     Description: Timestamp Seconds
+     Reference: this document
 
-   IANA would be required to reserve flags 2 and 3 from the IOAM DEX
-   Extension Flags registry.
+     Bit: 3
+     Description: Timestamp Fraction
+     Reference: this document
 
-8.  Acknowledgements
+7.  Acknowledgements
 
    The authors would like to thank xxx for their review and valuable
    comments.
 
-9.  References
+8.  References
 
-9.1.  Normative References
+8.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -204,19 +207,16 @@ Internet-Draft        Timestamp extension IOAM DEX          January 2023
               DOI 10.17487/RFC9326, November 2022,
               <https://www.rfc-editor.org/info/rfc9326>.
 
-9.2.  Informative References
+8.2.  Informative References
+
+   [I-D.tgraf-opsawg-ipfix-on-path-telemetry]
+              Graf, T., Claise, B., and A. H. Feng, "Export of On-Path
+              Delay in IPFIX", Work in Progress, Internet-Draft, draft-
+              tgraf-opsawg-ipfix-on-path-telemetry-01, 19 December 2022,
+              <https://www.ietf.org/archive/id/draft-tgraf-opsawg-ipfix-
+              on-path-telemetry-01.txt>.
 
 Authors' Addresses
-
-   Alex Huang Feng
-   INSA-Lyon
-   Lyon
-   France
-
-   Email: alex.huang-feng@insa-lyon.fr
-
-
-
 
 
 
@@ -224,6 +224,14 @@ Authors' Addresses
 Huang Feng, et al.        Expires 23 July 2023                  [Page 4]
 
 Internet-Draft        Timestamp extension IOAM DEX          January 2023
+
+
+   Alex Huang Feng
+   INSA-Lyon
+   Lyon
+   France
+
+   Email: alex.huang-feng@insa-lyon.fr
 
 
    Pierre Francois
@@ -234,6 +242,12 @@ Internet-Draft        Timestamp extension IOAM DEX          January 2023
    Email: pierre.francois@insa-lyon.fr
 
 
+   Benoit Claise
+   Huawei
+
+   Email: benoit.claise@huawei.com
+
+
    Thomas Graf
    Swisscom
    Binzring 17
@@ -241,20 +255,6 @@ Internet-Draft        Timestamp extension IOAM DEX          January 2023
    Switzerland
 
    Email: thomas.graf@swisscom.com
-
-
-   Benoit Claise
-   Huawei
-
-   Email: benoit.claise@huawei.com
-
-
-
-
-
-
-
-
 
 
 

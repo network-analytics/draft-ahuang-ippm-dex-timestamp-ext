@@ -68,6 +68,15 @@
         <uri/>
       </address>
     </author>
+
+    <author fullname="Benoit Claise" initials="B" surname="Claise">
+      <organization>Huawei</organization>
+
+      <address>
+        <email>benoit.claise@huawei.com</email>
+      </address>
+    </author>
+
     <author fullname="Thomas Graf" initials="T" surname="Graf">
       <organization>Swisscom</organization>
 
@@ -85,15 +94,6 @@
         <email>thomas.graf@swisscom.com</email>
       </address>
     </author>
-
-    <author fullname="Benoit Claise" initials="B" surname="Claise">
-      <organization>Huawei</organization>
-
-      <address>
-        <email>benoit.claise@huawei.com</email>
-      </address>
-    </author>
-
 
     <date day="19" month="January" year="2023"/>
 
@@ -114,46 +114,34 @@
 
   <middle>
     <section anchor="introduction" title="Introduction">
-      <t>Network operators require delay monitoring accros their network, notably when some services
-           undergo long end-to-end delays. Nodes can use IOAM <xref target="RFC9197"/> in order to report this delay to a
+      <t>Network operators require delay monitoring accros their network,
+      notably when some services undergo long end-to-end delays. Nodes can
+      use IOAM <xref target="RFC9197"/> in order to report this delay to a
       collector.</t>
 
-      <t>In order to support delay monitoring in passport mode so as to leverage aggregation; 
-           IOAM Direct Export Option-type (DEX) <xref target="RFC9326"/> needs to be extended to 
-           accomodate delay monitoring. </t>
-      
+      <t>In order to support delay monitoring in postcard mode so as to
+      leverage aggregation; IOAM Direct Export Option-type (DEX) <xref
+      target="RFC9326"/> needs to be extended to accomodate delay monitoring.
+      </t>
+
       <t>This document defines two new Extension flags for IOAM DEX Option-type 
       <xref target="RFC9326"/> to be able to add a timestamp in the header.</t>
 
     </section>
 
-    <section anchor="terminology" title="Terminology">
-         <t>This section should be removed</t>
-      <t>Abbreviations used in this document:</t>
-
-      <dl>
-        <dt>IOAM:</dt>
-        <dd>In Situ Operations, Administration, and Maintenance <xref target="RFC9197"/></dd>
-      </dl>
-
-      <dl>
-        <dt>DEX:</dt>
-        <dd>Direct Exporting <xref target="RFC9326"/></dd>
-      </dl>
-    </section>
-
     <section anchor="solution_overview" title="Solution overview">
-      <t>The IOAM DEX Option-type format is defined in <xref target="RFC9326">Section 3.2</xref>.
-      To be able to mesure the delay between the encapsulation node and the current node,
-      we suggest to add a timestamp to the IOAM DEX option-type as illustrated in 
-           figure <xref target="fig_ups_header"/>
+      <t>The IOAM DEX Option-type format is defined in <xref target="RFC9326">
+      Section 3.2</xref>. To be able to mesure the delay between the encapsulation
+      node and the current node, we suggest to add a timestamp to the IOAM DEX
+      option-type as illustrated in <xref target="fig_dex_header"/>.
       </t>
-         
-         
-      <t>This document proposes two optional fields to be included in the IOAM DEX option type format that can be enabled 
-      using IOAM DEX Extension-Flags (Using currently unassigned flags 2 and 3).</t>
 
-      <figure anchor="fig_ups_header" title="IOAM DEX option type Format including timestamp">
+      <t>This document proposes two optional fields to be included in the IOAM
+      DEX option type format that can be enabled using IOAM DEX Extension-Flags
+      (Using currently unassigned Extension-Flags 2 and 3).</t>
+
+      <figure anchor="fig_dex_header"
+        title="IOAM DEX option type Formatincluding timestamp">
         <artwork align="center"><![CDATA[
 0                   1                   2                   3
 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -176,12 +164,16 @@
     </section>
 
     <section anchor="timestamp_format" title="Timestamp formats">
-         <t>We refer to use the format of TODO REF to encode the Timestamp Seconds and Timestamp Fraction fields</t>
+      <t>We refer to use the format of <xref target="RFC9197">Section 5</xref>
+      to encode the Timestamp Seconds and Timestamp Fraction fields.</t>
     </section>
 
     <section anchor="export" title="Export method">
-      <t>A way to perform data export of monitored delay using the method described in this document
-           is proposed in TODO IPFIX IE draft.</t>
+      <t>The mechanism and associated formats for exporting the delay metrics
+      are outside the scope of this document.</t>
+      <t>A way to perform data export of monitored delay using the method
+      described in this document is proposed in <xref
+      target="I-D.tgraf-opsawg-ipfix-on-path-telemetry"/>.</t>
     </section>
 
     <section anchor="security" title="Security Considerations">
@@ -191,7 +183,24 @@
     </section>
 
     <section anchor="IANA_Considerations" title="IANA Considerations">
-         <t>IANA would be required to reserve flags 2 and 3 from the IOAM DEX Extension Flags registry.</t>
+      <t>IANA would be required to reserve two bits in the 
+      "IOAM DEX Extension-Flags" registry.</t>
+
+      <t>These are the proposed bits for the timestamp extensions:</t>
+
+      <t><figure>
+          <artwork align="left"><![CDATA[
+  Bit: 2
+  Description: Timestamp Seconds
+  Reference: this document]]></artwork>
+        </figure></t>
+
+      <t><figure>
+          <artwork align="left"><![CDATA[
+  Bit: 3
+  Description: Timestamp Fraction
+  Reference: this document]]></artwork>
+        </figure></t>
     </section>
 
     <section anchor="acknowledgements" title="Acknowledgements">
@@ -209,6 +218,7 @@
     </references>
 
     <references title="Informative References">
+      <?rfc include="https://bib.ietf.org/public/rfc/bibxml-ids/reference.I-D.tgraf-opsawg-ipfix-on-path-telemetry.xml"?>
     </references>
   </back>
 </rfc>
