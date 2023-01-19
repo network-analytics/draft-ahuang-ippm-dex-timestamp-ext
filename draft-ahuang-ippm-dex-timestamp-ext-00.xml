@@ -98,9 +98,9 @@
     <date day="29" month="November" year="2022"/>
 
     <abstract>
-      <t>This document defines new extension flags for In Situ Operations,
-      Administration, and Maintenance (IOAM) Direct Exporting. The new flags
-      allow IOAM DEX Option-type to add the timestamp into the header.</t>
+      <t>This document defines new extension flags for the In Situ Operations,
+      Administration, and Maintenance (IOAM) Direct Export option type. The new flags
+      allow IOAM DEX Option-type to add a timestamp into the header.</t>
     </abstract>
 
     <note title="Requirements Language">
