@@ -10,12 +10,12 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std"
-     docName="draft-ahuang-ippm-dex-timestamp-ext-00"
+<rfc category="std" docName="draft-ahuang-ippm-dex-timestamp-ext-00"
      ipr="trust200902">
   <front>
-    <title abbrev="Timestamp extension IOAM DEX">Timestamp extension flag
-    for In Situ Operations, Administration, and Maintenance (IOAM) Direct Export</title>
+    <title abbrev="Timestamp extension IOAM DEX">Timestamp extension for In
+    Situ Operations, Administration, and Maintenance (IOAM) Direct
+    Export</title>
 
     <author fullname="Alex Huang Feng" initials="A." surname="Huang Feng">
       <organization>INSA-Lyon</organization>
@@ -95,12 +95,13 @@
       </address>
     </author>
 
-    <date day="19" month="January" year="2023"/>
+    <date day="21" month="January" year="2023"/>
 
     <abstract>
-      <t>This document defines new extension flags for the In Situ Operations,
-      Administration, and Maintenance (IOAM) Direct Export option type. The new flags
-      allow IOAM DEX Option-type to add a timestamp into the header.</t>
+      <t>This document extends the In Situ Operations, Administration, and
+      Maintenance (IOAM) Direct Export option type to support timestamping by
+      adding and defining two optional timestamp fields and corresponding
+      flags.</t>
     </abstract>
 
     <note title="Requirements Language">
@@ -114,34 +115,38 @@
 
   <middle>
     <section anchor="introduction" title="Introduction">
-      <t>Network operators require delay monitoring accros their network,
-      notably when some services undergo long end-to-end delays. Nodes can
-      use IOAM <xref target="RFC9197"/> in order to report this delay to a
-      collector.</t>
+      <t>Network operators wish to measure the On-Path delay across their
+      networks to understand which part of the network caused how much delay
+      and impacting which applications how. Network nodes can leverage IOAM
+      <xref target="RFC9197"/> to add timestamps into the packet and export
+      the raw data with <xref target="I-D.spiegel-ippm-ioam-rawexport"/> or
+      the calculated On-Path delay with <xref
+      target="I-D.ietf-opsawg-ipfix-on-path-telemetry"/> to the IPFIX <xref
+      target="RFC7011"/> collector.</t>
 
-      <t>In order to support delay monitoring in postcard mode so as to
-      leverage aggregation; IOAM Direct Export Option-type (DEX) <xref
-      target="RFC9326"/> needs to be extended to accomodate delay monitoring.
-      </t>
+      <t>In order to support Postcard-Based On-Path delay measurement, IOAM
+      Direct Export Option-type (DEX) <xref target="RFC9326"/> needs to be
+      extended with timestamps to accommodate delay monitoring.</t>
 
-      <t>This document defines two new Extension flags for IOAM DEX Option-type 
-      <xref target="RFC9326"/> to be able to add a timestamp in the header.</t>
-
+      <t>This document defines two new Extension fields for IOAM DEX
+      Option-type <xref target="RFC9326"/> to support an optional timestamp in
+      the header.</t>
     </section>
 
     <section anchor="solution_overview" title="Solution overview">
       <t>The IOAM DEX Option-type format is defined in <xref target="RFC9326">
-      Section 3.2</xref>. To be able to mesure the delay between the encapsulation
-      node and the current node, we suggest to add a timestamp to the IOAM DEX
-      option-type as illustrated in <xref target="fig_dex_header"/>.
-      </t>
+      Section 3.2</xref>. To be able to measure the delay between the IOAM
+      encapsulation node and the current IOAM node, the timestamp is added to
+      the IOAM DEX option-type as illustrated in <xref
+      target="fig_dex_header"/>.</t>
 
       <t>This document proposes two optional fields to be included in the IOAM
-      DEX option type format that can be enabled using IOAM DEX Extension-Flags
-      (Using currently unassigned Extension-Flags 2 and 3).</t>
+      DEX option type format so that they can be enabled using IOAM DEX
+      Extension-Flags (Using currently unassigned Extension-Flags 2 and
+      3).</t>
 
       <figure anchor="fig_dex_header"
-        title="IOAM DEX Option-Type Format including the timestamps">
+              title="IOAM DEX Option-Type Format including the timestamps">
         <artwork align="center"><![CDATA[
 0                   1                   2                   3
 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -160,33 +165,33 @@
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 ]]></artwork>
       </figure>
-
     </section>
 
-    <section anchor="timestamp_format" title="Timestamp formats">
-      <t>We refer to use the format of <xref target="RFC9197">Section 5</xref>
-      to encode the Timestamp Seconds and Timestamp Fraction fields.</t>
+    <section anchor="timestamp_formats" title="Timestamp Formats">
+      <t>The Timestamp Seconds and Timestamp Fraction field encoding format
+      definitions are described in Section 5 of <xref target="RFC9197"/>.</t>
     </section>
 
-    <section anchor="export" title="Export method">
+    <section anchor="export" title="Export Method">
       <t>The mechanism and associated formats for exporting the delay metrics
       are outside the scope of this document.</t>
-      <t>A way to perform data export of monitored delay using the method
-      described in this document is proposed in <xref
-      target="I-D.tgraf-opsawg-ipfix-on-path-telemetry"/>.</t>
+    </section>
+
+    <section anchor="usecases" title="Use Cases">
+      <t>Possible interesting On-Path delay measurement use cases in
+      combination with other key metrics is described in Section 5 of <xref
+      target="I-D.ietf-opsawg-ipfix-on-path-telemetry"/>.</t>
     </section>
 
     <section anchor="security" title="Security Considerations">
-      <t>The security considerations for the IOAM DEX Option-type
-      are described in <xref target="RFC9326"/>. This documents adds
-      no additional security considerations.</t>
+      <t>The security considerations for the IOAM DEX Option-type are
+      described in <xref target="RFC9326"/>. This document adds no additional
+      security considerations.</t>
     </section>
 
     <section anchor="IANA_Considerations" title="IANA Considerations">
-      <t>IANA would be required to reserve two bits in the 
+      <t>This document requests IANA to create the following two bits in the
       "IOAM DEX Extension-Flags" registry.</t>
-
-      <t>These are the proposed bits for the timestamp extensions:</t>
 
       <t><figure>
           <artwork align="left"><![CDATA[
@@ -212,13 +217,20 @@
   <back>
     <references title="Normative References">
       <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml"?>
+
       <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml"?>
+
       <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.9197.xml"?>
+
       <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.9326.xml"?>
     </references>
 
     <references title="Informative References">
-      <?rfc include="https://bib.ietf.org/public/rfc/bibxml-ids/reference.I-D.tgraf-opsawg-ipfix-on-path-telemetry.xml"?>
+      <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.7011.xml"?>
+
+      <?rfc include="https://bib.ietf.org/public/rfc/bibxml-ids/reference.I-D.spiegel-ippm-ioam-rawexport.xml"?>
+
+      <?rfc include="https://bib.ietf.org/public/rfc/bibxml-ids/reference.I-D.ietf-opsawg-ipfix-on-path-telemetry.xml"?>
     </references>
   </back>
 </rfc>
