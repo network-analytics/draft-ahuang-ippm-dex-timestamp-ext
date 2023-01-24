@@ -5,11 +5,11 @@
 Network Working Group                                      A. Huang Feng
 Internet-Draft                                               P. Francois
 Intended status: Standards Track                               INSA-Lyon
-Expires: 25 July 2023                                          B. Claise
+Expires: 29 July 2023                                          B. Claise
                                                                   Huawei
                                                                  T. Graf
                                                                 Swisscom
-                                                         21 January 2023
+                                                         25 January 2023
 
 
     Timestamp extension for In Situ Operations, Administration, and
@@ -46,14 +46,14 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 July 2023.
+   This Internet-Draft will expire on 29 July 2023.
 
 
 
 
 
 
-Huang Feng, et al.        Expires 25 July 2023                  [Page 1]
+Huang Feng, et al.        Expires 29 July 2023                  [Page 1]
 
 Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
@@ -90,12 +90,12 @@ Table of Contents
 1.  Introduction
 
    Network operators wish to measure the On-Path delay across their
-   networks to understand which part of the network caused how much
-   delay and impacting which applications how.  Network nodes can
-   leverage IOAM [RFC9197] to add timestamps into the packet and export
-   the raw data with [I-D.spiegel-ippm-ioam-rawexport] or the calculated
-   On-Path delay with [I-D.ietf-opsawg-ipfix-on-path-telemetry] to the
-   IPFIX [RFC7011] collector.
+   networks to understand which part of the network cause how much delay
+   and impact which applications.  Network nodes can leverage IOAM
+   [RFC9197] to add timestamps into the packet and export the raw data
+   with [I-D.spiegel-ippm-ioam-rawexport] or the calculated On-Path
+   delay with [I-D.ietf-opsawg-ipfix-on-path-telemetry] to the IPFIX
+   [RFC7011] collector.
 
    In order to support Postcard-Based On-Path delay measurement, IOAM
    Direct Export Option-type (DEX) [RFC9326] needs to be extended with
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Huang Feng, et al.        Expires 25 July 2023                  [Page 2]
+Huang Feng, et al.        Expires 29 July 2023                  [Page 2]
 
 Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
@@ -165,7 +165,7 @@ Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
 
 
-Huang Feng, et al.        Expires 25 July 2023                  [Page 3]
+Huang Feng, et al.        Expires 29 July 2023                  [Page 3]
 
 Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
@@ -221,7 +221,7 @@ Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
 
 
-Huang Feng, et al.        Expires 25 July 2023                  [Page 4]
+Huang Feng, et al.        Expires 29 July 2023                  [Page 4]
 
 Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
@@ -277,7 +277,7 @@ Authors' Addresses
 
 
 
-Huang Feng, et al.        Expires 25 July 2023                  [Page 5]
+Huang Feng, et al.        Expires 29 July 2023                  [Page 5]
 
 Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
@@ -333,4 +333,4 @@ Internet-Draft        Timestamp extension IOAM DEX          January 2023
 
 
 
-Huang Feng, et al.        Expires 25 July 2023                  [Page 6]
+Huang Feng, et al.        Expires 29 July 2023                  [Page 6]

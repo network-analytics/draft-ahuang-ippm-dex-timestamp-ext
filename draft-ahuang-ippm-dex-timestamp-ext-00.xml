@@ -95,7 +95,7 @@
       </address>
     </author>
 
-    <date day="21" month="January" year="2023"/>
+    <date day="25" month="January" year="2023"/>
 
     <abstract>
       <t>This document extends the In Situ Operations, Administration, and
@@ -116,8 +116,8 @@
   <middle>
     <section anchor="introduction" title="Introduction">
       <t>Network operators wish to measure the On-Path delay across their
-      networks to understand which part of the network caused how much delay
-      and impacting which applications how. Network nodes can leverage IOAM
+      networks to understand which part of the network cause how much delay
+      and impact which applications. Network nodes can leverage IOAM
       <xref target="RFC9197"/> to add timestamps into the packet and export
       the raw data with <xref target="I-D.spiegel-ippm-ioam-rawexport"/> or
       the calculated On-Path delay with <xref
