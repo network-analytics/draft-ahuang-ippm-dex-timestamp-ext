@@ -95,7 +95,7 @@
       </address>
     </author>
 
-    <date day="29" month="January" year="2023"/>
+    <date day="06" month="February" year="2023"/>
 
     <abstract>
       <t>This document extends the In Situ Operations, Administration, and
@@ -142,8 +142,10 @@
 
       <t>This document proposes two optional fields to be included in the IOAM
       DEX option type format so that they can be enabled using IOAM DEX
-      Extension-Flags (Using currently unassigned Extension-Flags 2 and
-      3).</t>
+      Extension-Flags. New Extension-Flags are allocated by IANA, as defined in 
+      <xref target="IANA_Considerations"/>.
+      This document proposes using the bit 2 for the Timestamp Seconds 
+      and the bit 3 for the Timestamp Fraction.</t>
 
       <figure anchor="fig_dex_header"
               title="IOAM DEX Option-Type Format including the timestamps">
@@ -165,6 +167,10 @@
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 ]]></artwork>
       </figure>
+
+      <t>While the Timestamp Seconds field can be used standalone, 
+      the Timestamp Fraction MUST be used in combination with the Timestamp
+      Seconds field.</t>
     </section>
 
     <section anchor="timestamp_formats" title="Timestamp Formats">
@@ -173,8 +179,12 @@
     </section>
 
     <section anchor="export" title="Export Method">
-      <t>The mechanism and associated formats for exporting the delay metrics
-      are outside the scope of this document.</t>
+      <t>While the Timestamp Seconds and Timestamp Fraction can be exported
+      via IOAM raw export using <xref target="I-D.spiegel-ippm-ioam-rawexport"/>
+      and the calculated On-Path delay can be exported using IPFIX with <xref 
+      target="I-D.ietf-opsawg-ipfix-on-path-telemetry"/>, the mechanism and
+      associated formats for exporting the delay metrics are outside
+      the scope of this document.</t>
     </section>
 
     <section anchor="usecases" title="Use Cases">
